@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partners Carousel</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+
+<div class="container mt-5">
+    <div id="partnersCarousel" class="carousel slide" data-ride="carousel">
+
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+            <!-- Dynamically populated -->
+        </ul>
+
+        <!-- Slides -->
+        <div class="carousel-inner">
+            <!-- Dynamically populated -->
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#partnersCarousel" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#partnersCarousel" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var carouselData = [
+        {
+            name: "Partner 1",
+            image: "path/to/image1.jpg",
+            link: "https://partner1.com"
+        },
+        {
+            name: "Partner 2",
+            image: "path/to/image2.jpg",
+            link: "https://partner2.com"
+        }
+        // ... add more partners as needed
+    ];
+
+    var indicatorsContainer = document.querySelector('.carousel-indicators');
+    var slidesContainer = document.querySelector('.carousel-inner');
+
+    carouselData.forEach(function(partner, index) {
+        // Create indicator
+        var indicator = document.createElement('li');
+        indicator.setAttribute('data-target', '#partnersCarousel');
+        indicator.setAttribute('data-slide-to', index);
+        if (index === 0) {
+            indicator.classList.add('active');
+        }
+        indicatorsContainer.appendChild(indicator);
+
+        // Create slide
+        var slide = document.createElement('div');
+        slide.classList.add('carousel-item');
+        if (index === 0) {
+            slide.classList.add('active');
+        }
+        slide.innerHTML = `
+            <img src="${partner.image}" alt="${partner.name}" class="d-block w-100">
+            <div class="carousel-caption">
+                <h5>${partner.name}</h5>
+                <a href="${partner.link}" target="_blank">Visit</a>
+            </div>
+        `;
+        slidesContainer.appendChild(slide);
+    });
+});
+</script>
+
+</body>
+
+</html>
